@@ -1,17 +1,22 @@
 {
   "version": 2,
-  "projects": [
+  "builds": [
     {
-      "name": "repair-order-frontend",
-      "path": "frontend",
-      "autoExposeSystemEnvs": true
-    },
-    {
-      "name": "repair-order-api",
-      "path": "api",
-      "autoExposeSystemEnvs": true
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontend/build"
+      }
     }
   ],
-  "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
