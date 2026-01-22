@@ -51,9 +51,8 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
           onClick={() => window.print()}
           title="Preview untuk cetak"
         >
-          🖨️ Preview Cetak
+          🔍 Preview Cetak
         </button>
-
         <button 
           className="btn-export-monthly"
           onClick={() => setShowExportDialog(true)}

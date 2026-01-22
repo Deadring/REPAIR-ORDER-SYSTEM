@@ -1,0 +1,10 @@
+{
+  "name": "repair-order-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "echo 'Run frontend and backend separately'",
+    "install-all": "npm install && npm install --prefix=frontend && npm install --prefix=api"
+  }
+}
