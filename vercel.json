@@ -1,24 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "public": "frontend/build",
+  "buildCommand": "cd frontend && npm install && npm run build && cd ../api && npm install",
+  "outputDirectory": "frontend/build",
   "routes": [
     {
-      "src": "/api(.*)",
-      "dest": "backend/server.js"
+      "src": "/api/(.*)",
+      "dest": "/api"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/build/index.html"
+      "dest": "/index.html"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "backend/server.js": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  }
+  ]
 }
