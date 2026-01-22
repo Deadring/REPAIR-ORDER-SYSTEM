@@ -13,7 +13,12 @@ const getApiBaseUrl = () => {
     return process.env.REACT_APP_API_URL;
   }
 
-  // Default to current host
+  // For Vercel: use relative path /api (routed by vercel.json)
+  if (process.env.NODE_ENV === 'production') {
+    return `${window.location.origin}/api`;
+  }
+
+  // Default to current host for local development
   const protocol = window.location.protocol;
   const host = window.location.hostname;
   const port = process.env.REACT_APP_API_PORT || 8000;

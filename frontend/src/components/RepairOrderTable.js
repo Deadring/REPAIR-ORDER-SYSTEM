@@ -46,6 +46,14 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        <button>
+          className="btn-preview"
+          onClick={() => window.print()}
+          title="Preview untuk cetak"
+
+          🖨️ Preview Cetak
+        </button>
+
         <button 
           className="btn-export-monthly"
           onClick={() => setShowExportDialog(true)}

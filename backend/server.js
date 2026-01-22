@@ -28,8 +28,18 @@ const getLocalIpAddress = () => {
 
 const LOCAL_IP = getLocalIpAddress();
 
+// CORS configuration for Vercel
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'production' 
+        ? process.env.FRONTEND_URL 
+        : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -58,10 +68,15 @@ app.get('/api/health', async (req, res) => {
 });
 
 // Start server
-app.listen(PORT, HOST, () => {
-    console.log(`\n========================================`);
-    console.log(`✅ Server is running!`);
-    console.log(`========================================`);
+if (process.env.VERCEL) {
+    // For Vercel serverless functions
+    module.exports = app;
+} else {
+    // For local development
+    app.listen(PORT, HOST, () => {
+        console.log(`\n========================================`);
+        console.log(`✅ Server is running!`);
+        console.log(`========================================`);
     console.log(`Local Access:  http://localhost:${PORT}`);
     console.log(`Network Access: http://${LOCAL_IP}:${PORT}`);
     console.log(`========================================\n`);
@@ -70,4 +85,5 @@ app.listen(PORT, HOST, () => {
         DB_USER: process.env.DB_USER,
         DB_NAME: process.env.DB_NAME
     });
-});
+    });
+}
