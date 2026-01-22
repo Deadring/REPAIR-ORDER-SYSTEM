@@ -1,0 +1,6 @@
+api/
+backend/
+node_modules/
+.git/
+*.md
+*.sql
