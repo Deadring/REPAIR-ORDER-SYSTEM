@@ -46,11 +46,11 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button>
+        <button
           className="btn-preview"
           onClick={() => window.print()}
           title="Preview untuk cetak"
-
+        >
           🖨️ Preview Cetak
         </button>
 
