@@ -37,6 +37,12 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
 
   return (
     <div className="table-container">
+      {/* PRINT HEADER */}
+      <div className="print-header">
+        <h1>REPAIR ORDER SYSTEM</h1>
+        <p>Sistem Manajemen Perbaikan Perangkat</p>
+        <p style={{fontSize: '12px', color: '#666'}}>Tanggal Cetak: {new Date().toLocaleDateString('id-ID')}</p>
+      </div>
 
       {/* FILTER */}
       <div className="filter-bar">
