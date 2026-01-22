@@ -1,3 +1,17 @@
 {
-  "version": 2
+  "version": 2,
+  "projects": [
+    {
+      "name": "repair-order-frontend",
+      "path": "frontend",
+      "autoExposeSystemEnvs": true
+    },
+    {
+      "name": "repair-order-api",
+      "path": "api",
+      "autoExposeSystemEnvs": true
+    }
+  ],
+  "buildCommand": "npm run build",
+  "installCommand": "npm install"
 }
