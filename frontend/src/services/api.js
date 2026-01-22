@@ -27,7 +27,6 @@ const getApiBaseUrl = () => {
 };
 
 const API_BASE_URL = getApiBaseUrl();
-const API_URL = `${API_BASE_URL}/repair-orders`;
 
 // Get token from localStorage
 const getToken = () => {

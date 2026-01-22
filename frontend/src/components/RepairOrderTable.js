@@ -83,7 +83,7 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
               <th colSpan="2">Departure</th>
               <th rowSpan="2">RO</th>
               <th rowSpan="2">Ship Address</th>
-              <th rowSpan="2">Actions</th>
+              <th rowSpan="2" className="print-hide">Actions</th>
             </tr>
             <tr>
               <th>Number SJ</th>
@@ -117,7 +117,7 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
                   <td>{order.departure_number || '-'}</td>
                   <td>{order.repair_order ? 'Yes' : 'No'}</td>
                   <td>{order.ship_address || '-'}</td>
-                  <td>
+                  <td className="print-hide">
                     <div className="action-buttons">
                       <button
                         className="btn-view"

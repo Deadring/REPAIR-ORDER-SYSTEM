@@ -317,6 +317,12 @@
     padding: 8px 4px;
   }
 }
+
+/* PRINT HIDE CLASS */
+.print-hide {
+  display: table-cell;
+}
+
 /* PRINT STYLES */
 @media print {
   body {
@@ -334,6 +340,10 @@
 
   .print-header {
     display: block;
+  }
+
+  .filter-bar {
+    display: none;
   }
 
   .filter-bar {
@@ -378,6 +388,10 @@
   .btn-view,
   .btn-edit {
     display: none;
+  }
+
+  .print-hide {
+    display: none !important;
   }
 
   .text-center {

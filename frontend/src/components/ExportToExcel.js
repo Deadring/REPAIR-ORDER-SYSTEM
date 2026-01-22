@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { exportToExcel, getAllRepairOrders, getCurrentUser } from '../services/api';
 import './ExportToExcel.css';
 
@@ -31,13 +31,7 @@ const ExportToExcel = ({ isOpen, onClose, onExportStart, onExportEnd }) => {
   ];
 
   // Load unique stores on component mount
-  useEffect(() => {
-    if (isOpen && stores.length === 0) {
-      loadStores();
-    }
-  }, [isOpen]);
-
-  const loadStores = async () => {
+  const loadStores = useCallback(async () => {
     try {
       setLoadingStores(true);
       const orders = await getAllRepairOrders();
@@ -53,7 +47,13 @@ const ExportToExcel = ({ isOpen, onClose, onExportStart, onExportEnd }) => {
     } finally {
       setLoadingStores(false);
     }
-  };
+  }, [isAdmin, store]);
+
+  useEffect(() => {
+    if (isOpen && stores.length === 0) {
+      loadStores();
+    }
+  }, [isOpen, stores.length, loadStores]);
 
   const handleExport = async () => {
     setError('');

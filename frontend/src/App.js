@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import Auth from './components/Auth';
 import RepairOrderTable from './components/RepairOrderTable';
@@ -12,30 +12,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
 
-  useEffect(() => {
-    // Check if user is already logged in
-    const currentUser = getCurrentUser();
-    if (currentUser) {
-      setUser(currentUser);
-      fetchRepairOrders();
-    } else {
-      setLoading(false);
-    }
-  }, []);
-
-  const handleLoginSuccess = (userData) => {
-    setUser(userData);
-    fetchRepairOrders();
-  };
-
-  const handleLogout = () => {
-    logout();
-    setUser(null);
-    setShowForm(false);
-    setEditingOrder(null);
-  };
-
-  const fetchRepairOrders = async () => {
+  const fetchRepairOrders = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getAllRepairOrders();
@@ -50,6 +27,29 @@ function App() {
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    // Check if user is already logged in
+    const currentUser = getCurrentUser();
+    if (currentUser) {
+      setUser(currentUser);
+      fetchRepairOrders();
+    } else {
+      setLoading(false);
+    }
+  }, [fetchRepairOrders]);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    fetchRepairOrders();
+  };
+
+  const handleLogout = () => {
+    logout();
+    setUser(null);
+    setShowForm(false);
+    setEditingOrder(null);
   };
 
   const handleCreate = async (orderData) => {
