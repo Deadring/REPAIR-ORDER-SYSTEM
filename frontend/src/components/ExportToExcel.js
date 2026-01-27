@@ -86,12 +86,12 @@ const ExportToExcel = ({ isOpen, onClose, onExportStart, onExportEnd }) => {
       <div className="export-dialog" onClick={(e) => e.stopPropagation()}>
         <div className="export-header">
           <h3>📊 Export to Excel</h3>
-          <button className="btn-close" onClick={onClose}>×</button>
+          <button className="btn-close" onClick={onClose}>X</button>
         </div>
 
         <div className="export-body">
           <div className="form-group">
-            <label htmlFor="year">Year:</label>
+            <label htmlFor="year">Tahun:</label>
             <select
               id="year"
               value={year}
@@ -105,7 +105,7 @@ const ExportToExcel = ({ isOpen, onClose, onExportStart, onExportEnd }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="month">Month:</label>
+            <label htmlFor="month">Bulan:</label>
             <select
               id="month"
               value={month}
@@ -134,7 +134,7 @@ const ExportToExcel = ({ isOpen, onClose, onExportStart, onExportEnd }) => {
                 <option key={s} value={s}>{s}</option>
               ))}
             </select>
-            {!isAdmin && <small className="info-text">📌 Non-admin users can only export specific stores</small>}
+            {!isAdmin && <small className="info-text">📌 Hanya Admin yang dapat memilih semua store</small>}
             {loadingStores && <small className="loading-text">Loading stores...</small>}
           </div>
 

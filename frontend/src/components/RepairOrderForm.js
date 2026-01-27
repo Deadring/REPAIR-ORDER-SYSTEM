@@ -61,10 +61,10 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
         
         <form onSubmit={handleSubmit} className="repair-order-form">
           <div className="form-section">
-            <h3>Arrival Information</h3>
+            <h3>Informasi Kedatangan</h3>
             <div className="form-row">
               <div className="form-group">
-                <label>Number SJ *</label>
+                <label>Nomor SJ *</label>
                 <input
                   type="text"
                   name="arrival_number"
@@ -75,7 +75,7 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
               </div>
               
               <div className="form-group">
-                <label>Date *</label>
+                <label>Tanggal *</label>
                 <input
                   type="date"
                   name="arrival_date"
@@ -88,7 +88,7 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
 
             <div className="form-row">
               <div className="form-group">
-                <label>Store *</label>
+                <label>Toko *</label>
                 <input
                   type="text"
                   name="store"
@@ -99,7 +99,7 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
               </div>
               
               <div className="form-group">
-                <label>Division *</label>
+                <label>Divisi *</label>
                 <input
                   type="text"
                   name="division"
@@ -112,9 +112,9 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
           </div>
 
           <div className="form-section">
-            <h3>Device Information</h3>
+            <h3>Informasi Perangkat</h3>
             <div className="form-group">
-              <label>Device Name *</label>
+              <label>Nama Perangkat *</label>
               <input
                 type="text"
                 name="device_name"
@@ -125,7 +125,7 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
             </div>
             
             <div className="form-group">
-              <label>Number Inventory</label>
+              <label>Nomor Inventaris</label>
               <input
                 type="text"
                 name="number_inventory"
@@ -135,7 +135,7 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
             </div>
 
             <div className="form-group">
-              <label>Serial Number</label>
+              <label>Nomor Seri</label>
               <input
                 type="text"
                 name="serial_number"
@@ -146,31 +146,34 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
           </div>
 
           <div className="form-section">
-            <h3>Issue & Repair Details</h3>
+            <h3>Kasus & Detail Perbaikan</h3>
             <div className="form-group">
-              <label>Issue</label>
+              <label>Kasus Permasalahan</label>
               <textarea
                 name="issue"
                 value={formData.issue}
                 onChange={handleChange}
                 rows="3"
               />
-              <label>Repair Note</label>
-              <textarea
-                name="repair_note"
-                value={formData.repair_note}
-                onChange={handleChange}
-                rows="3"
-              />
+              
             </div>
           </div>
 
           {order && (
             <div className="form-section">
-              <h3>Departure Information (Barang Sudah Diperbaiki)</h3>
-              <div className="form-row">
+              <h3>Informasi Keberangkatan (Barang Sudah Diperbaiki)</h3>
+              <div className="form-rowSpan">
                 <div className="form-group">
-                  <label>Date</label>
+                  <label>Catatan Perbaikan</label>
+                  <input
+                    type="text"
+                    name="repair_note"
+                    value={formData.repair_note}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Tanggal</label>
                   <input
                     type="date"
                     name="departure_date"
@@ -180,7 +183,7 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
                 </div>
                 
                 <div className="form-group">
-                  <label>Number SJ</label>
+                  <label>Nomor SJ</label>
                   <input
                     type="text"
                     name="departure_number"
@@ -202,7 +205,7 @@ const RepairOrderForm = ({ order, onSubmit, onCancel }) => {
                 </div>
                 
                 <div className="form-group">
-                  <label>Ship Address</label>
+                  <label>Pengirim</label>
                   <input
                     type="text"
                     name="ship_address"

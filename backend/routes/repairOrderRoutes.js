@@ -7,12 +7,12 @@ const { authenticateToken, authorizeRole, checkPermission } = require('../middle
 router.use(authenticateToken);
 
 // Routes
+// Export to Excel - MUST be before /:id route
+router.get('/export/excel', repairOrderController.exportToExcel);
+
 // Anyone can view
 router.get('/', repairOrderController.getAllRepairOrders);
 router.get('/:id', repairOrderController.getRepairOrderById);
-
-// Export to Excel - anyone can view
-router.get('/export/excel', repairOrderController.exportToExcel);
 
 // Only users with can_create permission can create
 router.post('/', checkPermission('can_create'), repairOrderController.createRepairOrder);

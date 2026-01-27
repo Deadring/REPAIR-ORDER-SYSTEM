@@ -74,23 +74,23 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
           <thead>
             <tr>
               <th rowSpan="2">No</th>
-              <th colSpan="3">Arrival</th>
-              <th rowSpan="2">Device Name</th>
-              <th rowSpan="2">Inventory</th>
-              <th rowSpan="2">Serial Number</th>
-              <th rowSpan="2">Issue</th>
-              <th rowSpan="2">Repair Note</th>
-              <th colSpan="2">Departure</th>
+              <th colSpan="3">Kedatangan</th>
+              <th rowSpan="2">Nama Perangkat</th>
+              <th rowSpan="2">Nomor Inventaris</th>
+              <th rowSpan="2">Nomor Seri</th>
+              <th rowSpan="2">Kasus Permasalahan</th>
+              <th rowSpan="2">Catatan Perbaikan</th>
+              <th colSpan="2">Keberangkatan</th>
               <th rowSpan="2">RO</th>
-              <th rowSpan="2">Ship Address</th>
+              <th rowSpan="2">Pengirim</th>
               <th rowSpan="2" className="print-hide">Actions</th>
             </tr>
             <tr>
-              <th>Number SJ</th>
-              <th>Date</th>
+              <th>Nomor SJ</th>
+              <th>Tanggal</th>
               <th>Store / Division</th>
-              <th>Date</th>
-              <th>Number SJ</th>
+              <th>Tanggal Kirim</th>
+              <th>Nomor SJ</th>
             </tr>
           </thead>
 
@@ -115,7 +115,7 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
                   <td>{order.repair_note || '-'}</td>
                   <td>{formatDate(order.departure_date)}</td>
                   <td>{order.departure_number || '-'}</td>
-                  <td>{order.repair_order ? 'Yes' : 'No'}</td>
+                  <td>{order.repair_order ? 'Ya' : 'Tidak'}</td>
                   <td>{order.ship_address || '-'}</td>
                   <td className="print-hide">
                     <div className="action-buttons">
@@ -151,20 +151,20 @@ const RepairOrderTable = ({ orders = [], onEdit }) => {
             </div>
 
             <div className="modal-body">
-              <p><b>Arrival SJ:</b> {selectedOrder.arrival_number}</p>
-              <p><b>Arrival Date:</b> {formatDate(selectedOrder.arrival_date)}</p>
-              <p><b>Store / Division:</b> {selectedOrder.store} / {selectedOrder.division}</p>
+              <p><b>Kedatangan Nomor SJ:</b> {selectedOrder.arrival_number}</p>
+              <p><b>Tanggal Kedatangan:</b> {formatDate(selectedOrder.arrival_date)}</p>
+              <p><b>Toko / Divisi:</b> {selectedOrder.store} / {selectedOrder.division}</p>
               <hr />
-              <p><b>Device:</b> {selectedOrder.device_name}</p>
-              <p><b>Inventory:</b> {selectedOrder.number_inventory || '-'}</p>
-              <p><b>Serial:</b> {selectedOrder.serial_number || '-'}</p>
-              <p><b>Issue:</b> {selectedOrder.issue || '-'}</p>
-              <p><b>Repair Note:</b> {selectedOrder.repair_note || '-'}</p>
+              <p><b>Perangkat:</b> {selectedOrder.device_name}</p>
+              <p><b>Nomor Inventaris:</b> {selectedOrder.number_inventory || '-'}</p>
+              <p><b>Nomor Seri:</b> {selectedOrder.serial_number || '-'}</p>
+              <p><b>Kasus Permasalahan:</b> {selectedOrder.issue || '-'}</p>
+              <p><b>Catatan Perbaikan:</b> {selectedOrder.repair_note || '-'}</p>
               <hr />
-              <p><b>Departure Date:</b> {formatDate(selectedOrder.departure_date)}</p>
-              <p><b>Departure SJ:</b> {selectedOrder.departure_number || '-'}</p>
-              <p><b>RO:</b> {selectedOrder.repair_order ? 'Yes' : 'No'}</p>
-              <p><b>Ship Address:</b> {selectedOrder.ship_address || '-'}</p>
+              <p><b>Tanggal Kirim:</b> {formatDate(selectedOrder.departure_date)}</p>
+              <p><b>Nomor SJ Kirim:</b> {selectedOrder.departure_number || '-'}</p>
+              <p><b>RO:</b> {selectedOrder.repair_order ? 'Ya' : 'Tidak'}</p>
+              <p><b>Pengirim:</b> {selectedOrder.ship_address || '-'}</p>
             </div>
           </div>
         </div>

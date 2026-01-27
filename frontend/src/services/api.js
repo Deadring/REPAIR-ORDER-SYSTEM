@@ -28,6 +28,8 @@ const getApiBaseUrl = () => {
 
 const API_BASE_URL = getApiBaseUrl();
 
+console.log('🔧 API Base URL:', API_BASE_URL);
+
 // Get token from localStorage
 const getToken = () => {
   return localStorage.getItem('token');
@@ -35,16 +37,49 @@ const getToken = () => {
 
 // Create axios instance with auth header
 const apiClient = axios.create({
-  baseURL: API_BASE_URL
+  baseURL: API_BASE_URL,
+  timeout: 10000, // 10 second timeout
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 apiClient.interceptors.request.use((config) => {
+  console.log('📤 API Request:', config.method?.toUpperCase(), config.url);
   const token = getToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
+
+apiClient.interceptors.response.use(
+  (response) => {
+    console.log('✅ API Response:', response.config.url, response.status);
+    return response;
+  },
+  (error) => {
+    console.error('❌ API Error:', error.config?.url, error.message);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+      
+      // If 401 or 403, clear invalid token and reload
+      if (error.response.status === 401 || error.response.status === 403) {
+        console.warn('⚠️ Token invalid/expired. Clearing authentication...');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        // Only reload if not already on login page
+        if (window.location.pathname !== '/') {
+          window.location.reload();
+        }
+      }
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    }
+    return Promise.reject(error);
+  }
+);
 
 // Auth endpoints
 export const login = async (username, password) => {
@@ -90,10 +125,19 @@ export const getCurrentUser = () => {
 // Repair order endpoints
 export const getAllRepairOrders = async () => {
   try {
+    console.log('🔄 Fetching repair orders from:', API_BASE_URL);
     const response = await apiClient.get('/repair-orders');
+    console.log('✅ Repair orders fetched:', response.data.data?.length, 'items');
     return response.data.data;
   } catch (error) {
-    console.error('Error fetching repair orders:', error);
+    console.error('❌ Error fetching repair orders:', error);
+    if (error.response) {
+      console.error('Server responded with:', error.response.status, error.response.data);
+    } else if (error.request) {
+      console.error('No response from server. Is the backend running at', API_BASE_URL + '?');
+    } else {
+      console.error('Request setup error:', error.message);
+    }
     throw error;
   }
 };

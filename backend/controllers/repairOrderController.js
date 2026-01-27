@@ -208,20 +208,20 @@ exports.exportToExcel = async (req, res) => {
 
         // Define columns
         worksheet.columns = [
-            { header: 'No', key: 'no', width: 5 },
-            { header: 'Arrival SJ', key: 'arrival_number', width: 15 },
-            { header: 'Arrival Date', key: 'arrival_date', width: 12 },
-            { header: 'Store', key: 'store', width: 15 },
-            { header: 'Division', key: 'division', width: 15 },
-            { header: 'Device Name', key: 'device_name', width: 20 },
-            { header: 'Inventory #', key: 'number_inventory', width: 15 },
-            { header: 'Serial Number', key: 'serial_number', width: 15 },
-            { header: 'Issue', key: 'issue', width: 25 },
-            { header: 'Repair Note', key: 'repair_note', width: 25 },
-            { header: 'Departure Date', key: 'departure_date', width: 12 },
-            { header: 'Departure SJ', key: 'departure_number', width: 15 },
-            { header: 'Repair Order', key: 'repair_order', width: 12 },
-            { header: 'Ship Address', key: 'ship_address', width: 25 }
+            { header: 'No', key: 'no', width: 5, alignment: { horizontal: 'center' } },
+            { header: 'Nomor SJ', key: 'arrival_number', width: 15, alignment: { horizontal: 'center' } },
+            { header: 'Tanggal', key: 'arrival_date', width: 12, alignment: { horizontal: 'center' } },
+            { header: 'Toko', key: 'store', width: 15, alignment: { horizontal: 'center' } },
+            { header: 'Divisi', key: 'division', width: 15, alignment: { horizontal: 'center' } },
+            { header: 'Nama Perangkat', key: 'device_name', width: 20, alignment: { horizontal: 'center' } },
+            { header: 'Nomor Inventaris', key: 'number_inventory', width: 15, alignment: { horizontal: 'center' } },
+            { header: 'Nomor Seri', key: 'serial_number', width: 15, alignment: { horizontal: 'center' } },
+            { header: 'Kasus Permasalahan', key: 'issue', width: 25, alignment: { horizontal: 'center' } },
+            { header: 'Catatan Perbaikan', key: 'repair_note', width: 25, alignment: { horizontal: 'center' } },
+            { header: 'Tanggal Kirim', key: 'departure_date', width: 12, alignment: { horizontal: 'center' } },
+            { header: 'Nomor SJ Kirim', key: 'departure_number', width: 15, alignment: { horizontal: 'center' } },
+            { header: 'Repair Order', key: 'repair_order', width: 12, alignment: { horizontal: 'center' } },
+            { header: ' Pengirim', key: 'ship_address', width: 25, alignment: { horizontal: 'center' } }
         ];
 
         // Add header style

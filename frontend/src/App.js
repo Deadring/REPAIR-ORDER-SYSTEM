@@ -12,6 +12,13 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
 
+  const handleLogout = useCallback(() => {
+    logout();
+    setUser(null);
+    setShowForm(false);
+    setEditingOrder(null);
+  }, []);
+
   const fetchRepairOrders = useCallback(async () => {
     try {
       setLoading(true);
@@ -19,15 +26,17 @@ function App() {
       setRepairOrders(data);
     } catch (error) {
       console.error('Error fetching repair orders:', error);
-      if (error.response?.status === 401) {
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        // Token invalid, logout
+        alert('Sesi Anda telah berakhir. Silakan login kembali.');
         handleLogout();
       } else {
-        alert('Gagal mengambil data repair orders');
+        alert('Gagal mengambil data repair orders: ' + (error.response?.data?.message || error.message));
       }
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [handleLogout]);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -43,13 +52,6 @@ function App() {
   const handleLoginSuccess = (userData) => {
     setUser(userData);
     fetchRepairOrders();
-  };
-
-  const handleLogout = () => {
-    logout();
-    setUser(null);
-    setShowForm(false);
-    setEditingOrder(null);
   };
 
   const handleCreate = async (orderData) => {
